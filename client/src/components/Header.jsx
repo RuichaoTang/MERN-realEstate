@@ -6,7 +6,7 @@ export default function Header() {
     const {currentUser} = useSelector(state => state.user)
   return (
     <header className='bg-slate-200 shadow-md p-1 sm:p-3'>
-        <div className='flex justify-between items-center max-w-6xl mx-auto'>
+        <div className='flex justify-between items-center max-w-lg sm:max-w-6xl mx-auto'>
             <Link to='/'>
             <h1 className='mx-3 font-bold text-xl sm:text-2xl flex flex-wrap'>
                 <span className='text-slate-500'>Nest</span>
