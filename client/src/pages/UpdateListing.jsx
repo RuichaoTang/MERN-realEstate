@@ -42,7 +42,7 @@ export default function CreateListing() {
         }
         fetchListing()
     },[])
-    
+
     const handleImageSubmit = () =>{
         if(files.length > 0 && (files.length + formData.imageUrls.length) < 7){
             setUploading(true)
@@ -212,7 +212,7 @@ export default function CreateListing() {
                     </div>
                     { formData.offer &&
                     <div className='flex items-center gap-2'>
-                        <input type='number' id='discountedPrice' min='50' max='9999999999' className='p-3 border border-gray-300 rounded-lg' onChange={handleChange} value={formData.discountedPrice}/>
+                        <input type='number' id='discountedPrice' min='0' max='9999999999' className='p-3 border border-gray-300 rounded-lg' onChange={handleChange} value={formData.discountedPrice}/>
                         <div className='flex flex-col'>
                         <p>Discounted Price</p>
                         <span className='text-xs'>{formData.type==='rent'? '($ / month)':''}</span>

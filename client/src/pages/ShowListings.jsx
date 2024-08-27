@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore from 'swiper'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css/bundle'
+import { FaMapMarkedAlt, FaBed, FaBath, FaParking, FaChair } from 'react-icons/fa'
 
 
 export default function ShowListings() {
@@ -45,7 +46,7 @@ export default function ShowListings() {
         {loading && <p className='text-center my-7 text-2x'>Loading...</p>}
         {error && <p className='text-center my-7 text-2x'>Something went wrong!</p>}
         {listing && !loading && !error && (
-            <div>
+        <div>
             <Swiper navigation>
                 {listing.imageUrls.map( url => (
                     <SwiperSlide key={url}>
@@ -53,7 +54,73 @@ export default function ShowListings() {
                 </SwiperSlide>
                 ))}
             </Swiper>
+            <div className='max-w-4xl my-7 mx-auto flex flex-col gap-y-6 p-3' >
+
+            <div className='flex flex-wrap gap-4'>
+                <h1 className='text-3xl font-bold uppercase text-slate-700'>{listing.name}</h1>
+                <h1 className='text-3xl font-bold uppercase text-slate-700'>-</h1>
+                <div className='flex font-semibold'>
+                    {listing.offer? 
+                    <div className='flex '>
+                        <div className='text-3xl'>
+                        $ {listing.discountedPrice.toLocaleString('en-US')}
+                        </div>
+
+                        <div className='line-through text-gray-400'>
+                        {listing.regularPrice.toLocaleString('en-US')}
+                        </div>
+                    </div> :  
+                    <div className='text-3xl'>$ {listing.regularPrice.toLocaleString('en-US')} </div>}
+                    {listing.type ==='rent' && <div className='text-3xl'>/ Month</div>}
+                </div>  
             </div>
+            <div className='flex flex-col gap-y-1'>
+
+            <p className='flex items-center gap-2 text-slate-600 text-sm'>
+                    <FaMapMarkedAlt className='text-green-700'/>
+                    {listing.address}
+            </p>
+            <div className='flex gap-4'>
+
+            <p className='bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>{listing.type === 'rent' ? 'For Rent' : 'For Sale'}</p>
+            {
+                listing.offer && (
+                    <p className='bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>Discount: ${+listing.regularPrice - +listing.discountedPrice}</p>
+                )
+            }
+            </div>
+
+            </div>
+
+            <p className='text-slate-800'>
+                <span className='font-semibold text-black'>
+                Description - {' '}
+                </span>
+                {listing.description}
+            </p>
+            <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
+                <li className='flex item-center gap-1 whitespace-nowrap'>
+                    <FaBed className='text-lg'/>
+                    {listing.bedrooms > 1 ? `${listing.bedrooms} beds` : `${listing.bedrooms} bed`}
+                </li>
+                <li className='flex item-center gap-1 whitespace-nowrap'>
+                    <FaBath className='text-lg'/>
+                    {listing.bathrooms > 1 ? `${listing.bathrooms} baths` : `${listing.bathrooms} bath`}
+                </li>
+                <li className='flex item-center gap-1 whitespace-nowrap'>
+                    <FaParking className='text-lg'/>
+                    {listing.parking ? 'Parking Spot' : 'No Parking'}
+                </li>
+                <li className='flex item-center gap-1 whitespace-nowrap'>
+                    <FaChair className='text-lg'/>
+                    {listing.furnished ? 'Furnished' : 'Not Furnished'}
+                </li>
+                
+            </ul>
+            
+            </div>
+
+        </div>
         )}
     </main>
   )
