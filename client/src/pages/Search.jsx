@@ -1,6 +1,8 @@
 
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Listing from '../../../api/models/listing.model'
+import ListingCard from '../components/ListingCard'
 
 export default function Search() {
     const navigate = useNavigate()
@@ -93,8 +95,6 @@ export default function Search() {
 
     },[location.search])
 
-
-    console.log(listings)
   return (
     <div className='flex flex-col md:flex-row '>
         {/* left part */}
@@ -162,8 +162,21 @@ export default function Search() {
         </div>
 
         {/* right part */}
-        <div className='p-3 text-3xl mt-5 font-semibold border-b text-slate-700'>
-            <h1>Listing Result:</h1>
+        <div className='flex-1'>
+            <h1 className='p-3 text-3xl mt-5 font-semibold border-b text-slate-700 text-center'>Listing Result:</h1>
+            <div className='p-7 flex flex-wrap gap-4 justify-center'>
+                {!loading && listings.length === 0 && (
+                    <p className='text-slate-700 text-xl'>Nothing found.</p>
+                )}
+                {loading && (
+                    <p className='text-slate-700 text-xl text-center w-full'>Loading...</p>
+                )}
+                {!loading && listings && listings.map((listing)=>(
+                    <ListingCard key={listing._id} listing={listing}/>
+                ))
+                }
+
+            </div>
         </div>
 
 
