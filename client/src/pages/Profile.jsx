@@ -153,7 +153,7 @@ const handleListingDelete = async(listingId) =>{
 }
 
   return (
-    <div className="p-3 max-w-lg mx-auto">
+    <div className="p-3 max-w-lg mx-auto pt-10 sm:pt-16">
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <input onChange={(e)=>{setFile(e.target.files[0])

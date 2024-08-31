@@ -2,7 +2,7 @@
  
  export default function About() {
    return (
-     <div>About</div>
+     <div className='pt-10 sm:pt-16'>About</div>
    )
  }
  
