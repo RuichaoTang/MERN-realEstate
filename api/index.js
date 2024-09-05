@@ -18,6 +18,8 @@ mongoose
 )
 const app = express();
 
+const __dirname = path.resolve();
+
 app.use(express.json());
 app.use(cookieParser())
 
@@ -29,6 +31,11 @@ app.use("/api/user", userRouter);
 app.use("/api/auth", authrouter);
 app.use("/api/listing", listingRouter);
 
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
+})
 
 
 // register a middleware to handle errors
