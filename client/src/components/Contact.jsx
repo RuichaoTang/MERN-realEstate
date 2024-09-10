@@ -22,7 +22,6 @@ export default function Contact({listing}) {
     }
     ,[listing.userRef])
 
-    console.log(landlord)
     return (
         <div>
         {landlord && (

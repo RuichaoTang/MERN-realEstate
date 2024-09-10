@@ -13,7 +13,6 @@ export default function SignUp() {
       [e.target.id]: e.target.value,
     });
   };
-  console.log(formData);
 
   const handleSubmit = async (e)=>{
     e.preventDefault();

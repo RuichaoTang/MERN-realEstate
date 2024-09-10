@@ -24,7 +24,6 @@ export default function Search() {
 
     }
 
-    console.log(showMore)
 
     const [sidebarData, setSidebarData] = useState({
         searchTerm: '',

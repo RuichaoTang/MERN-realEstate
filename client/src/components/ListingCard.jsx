@@ -4,7 +4,7 @@ import { MdLocationOn } from 'react-icons/md'
 import { FaBath, FaBed} from 'react-icons/fa'
 
 export default function ListingCard({listing}) {
-    console.log(listing)
+
 
     if(listing.offer){
         var price = listing.discountedPrice
