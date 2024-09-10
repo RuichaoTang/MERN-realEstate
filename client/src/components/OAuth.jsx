@@ -12,7 +12,7 @@ export default function OAuth() {
         try {
             const provider = new GoogleAuthProvider()
             const auth = getAuth(app)
-            const result = await signInWithPopup( auth, provider)
+            const result = await signInWithPopup(auth, provider)
             console.log(result)
             const res = await fetch('/api/auth/google',{
                 method: 'POST',
@@ -37,6 +37,6 @@ export default function OAuth() {
     }
 
   return (
-    <button  onClick={handleGoogleClick} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>Continue with google</button>
+    <button type='button' onClick={handleGoogleClick} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>Continue with google</button>
   )
 }
