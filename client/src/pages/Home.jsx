@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom'
 import {Swiper, SwiperSlide} from 'swiper/react' 
 import 'swiper/css/bundle'
 import SwiperCore from 'swiper'
-import {Navigation} from 'swiper/modules'
+import {Navigation, Autoplay} from 'swiper/modules'
 import ListingCard from '../components/ListingCard'
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([])
   const [saleListings, setSaleListings] = useState([])
   const [rentListings, setRentListings] = useState([])
-  SwiperCore.use([Navigation])
+  SwiperCore.use([Navigation, Autoplay])
 
-  console.log(offerListings,saleListings,rentListings)
+  console.log(offerListings)
   useEffect(()=>{
     const fetchOfferListings = async ()=>{
       try {
@@ -67,14 +67,30 @@ export default function Home() {
           </Link>
         </div>
       {/* swiper */}
-      <Swiper navigation>
+      <Swiper navigation autoplay={{
+          delay: 4000, // 自动翻页的时间间隔，单位是毫秒
+          disableOnInteraction: false, // 是否在用户交互时禁用自动播放
+          pauseOnMouseEnter: true,
+        }}
+        loop={true} // 是否循环播放
+        speed={500} // 翻页的速度，单位是毫秒
+        >
 
       {offerListings && offerListings.length>0 && (
-        offerListings.map((listing)=>(
-          <SwiperSlide key={`${listing._id}D`}>
-            <div style={{background: `url(${listing.imageUrls[0]}) center no-repeat`, backgroundSize:"cover"}} className='h-[300px] sm:h-[500px]' key={listing._id}></div>
+        offerListings.map((listing)=>{
+          console.log(listing)
+          return(
+          <SwiperSlide key={listing._id}>
+            <Link to={`/listing/${listing._id}`}>
+            <div style={{
+              maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)',
+              WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)'
+            }}>
+            <img src={listing.imageUrls[0]} alt='Picture not found.' className="w-full h-[450px] sm:h-[600px] object-cover transition-opacity duration-300 hover:opacity-80"/>
+            </div>
+          </Link>
           </SwiperSlide>
-        ))
+        )})
       )}
     </Swiper>
 

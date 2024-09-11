@@ -24,12 +24,12 @@ export default function ListingCard({listing}) {
                     <p className='text-sm text-gray-500 truncate w-full'>{listing.address}</p>
                 </div>
                 <p className='text-sm text-gray-600 line-clamp-3'>{listing.description}</p>
-                <p>
+                <div>
                     <p className='text-slate-700 mt-2 font-semibold flex'>
                         ${price && price.toLocaleString('en-US')}
                         {listing.type === 'rent' && ' / month'}
                     </p>
-                </p>
+                </div>
                 <div className='text-xs font-bold flex flex-wrap gap-4 text-gray-900'>
                     <div className='flex gap-1 items-center whitespace-nowrap'>
                         <FaBed className='text-lg'/>

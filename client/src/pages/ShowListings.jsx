@@ -18,6 +18,7 @@ export default function ShowListings() {
     const [contact, setContact] = useState(false)
     const params = useParams()
     const {currentUser} = useSelector((state) => state.user)
+    console.log(listing)
 
     useEffect(()=>{
         const fetchListing = async ()=>{
@@ -42,7 +43,6 @@ export default function ShowListings() {
         fetchListing()
     },[params.listingId])
 
-
   return (
     <main className='pt-10 sm:pt-16'>
         {loading && <p className='text-center my-7 text-2x'>Loading...</p>}
@@ -52,7 +52,12 @@ export default function ShowListings() {
             <Swiper navigation>
                 {listing.imageUrls.map( url => (
                     <SwiperSlide key={url}>
-                    <div className='h-[550px]' style={{background:`url(${url}) center no-repeat`, backgroundSize:'cover'}}></div>    
+                    <div style={{
+                        maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)',
+                        WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)'
+                }}>
+                    <img src={url} alt='Picture not found.' className="w-full h-[350px] sm:h-[550px] object-cover"/>
+                    </div>
                 </SwiperSlide>
                 ))}
             </Swiper>

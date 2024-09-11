@@ -122,12 +122,12 @@ export default function Search() {
         <div className='p-7 border-b-2 md:border-r-2 md:min-h-screen sm:fixed bg-slate-50'>
             <form className='flex flex-col gap-7' onSubmit={handleSubmit}>
                 <div className='flex items-center gap-2'>
-                    <lable className='whitespace-nowrap font-semibold'>Search Term</lable>
+                    <div className='whitespace-nowrap font-semibold'>Search Term</div>
                     <input type='text' id='searchTerm' placeholder='Search...' className='border rounded-lg p-3 w-full' onChange={handleChange} value={sidebarData.searchTerm}/>
                 </div>
 
                 <div className='flex gap-2 flex-wrap items-center'>
-                    <lable className='font-semibold'>Type:</lable>
+                    <div className='font-semibold'>Type:</div>
                     <div>
                         <input type='checkbox' id='all' className='w-5' onChange={handleChange} checked={sidebarData.type==='all'}/>
                         <span>Rent & Sale</span>
@@ -150,7 +150,7 @@ export default function Search() {
                 </div>
 
                 <div className='flex gap-2 flex-wrap items-center'>
-                    <lable className='font-semibold'>Amendites:</lable>
+                    <div className='font-semibold'>Amendites:</div>
                     <div>
                         <input type='checkbox' id='parking' className='w-5' onChange={handleChange} checked={sidebarData.parking}/>
                         <span>Parking</span>
@@ -163,7 +163,7 @@ export default function Search() {
                 </div>
 
                 <div className='flex gap-2 items-center'>
-                    <lable className='font-semibold'>Sort:</lable>
+                    <div className='font-semibold'>Sort:</div>
                     <select 
                     value={`${sidebarData.sort}_${sidebarData.order}`}
                     
