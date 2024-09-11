@@ -18,6 +18,7 @@ export default function Profile() {
   const [updateSuccess, setUpdateSuccess] = useState(false)
   const [ showListingsError, setShowListingsError ] = useState(false)
   const [ userListings, setUserListings ] = useState([])
+  const [ showListingButton, setShowListingButton] =useState(true)
   console.log(userListings)
   // console.log(fileUploadError)
 
@@ -131,6 +132,7 @@ const handleSignOut = async ()=>{
 }
 
 const handleShowListings = async ()=>{
+  setShowListingButton(false)
   try {
     setShowListingsError(false)
     const res = await fetch(`/api/user/listings/${currentUser._id}`)
@@ -166,6 +168,8 @@ const handleListingDelete = async(listingId) =>{
 }
 
   return (
+    <div className="min-h-screen bg-gradient-to-b from-transparent to-slate-200 w-full">
+
     <div className="pt-10 sm:pt-16 max-w-6xl mx-auto">
 
     <div className="p-3 max-w-lg mx-auto">
@@ -203,16 +207,20 @@ const handleListingDelete = async(listingId) =>{
       </div>
       <p className="text-red-700 mt-5">{error ? error : ""}</p>
       <p className="text-green-700 mt-5">{updateSuccess ? "User is updated successfully!" : ""}</p>
-      <button onClick={handleShowListings} className="text-green-700 w-full">Show listings</button>
+      {showListingButton && <button onClick={handleShowListings} className="text-green-700 uppercase w-full rounded-lg p-3 ">Show listings</button>}
       <p className="text-red-700 mt-5">{showListingsError? showListingsError.message : ''}</p>
       
       </div>
       {!userListings && <h1 className="text-center mt-7 text-2xl font-semibold">You have no listing.</h1>}
 
-      {userListings && userListings.length > 0 && 
-      <div>
-        <h1 className="text-center mt-7 mb-4 text-2xl font-semibold">Your Listings</h1>
-        <div className="flex gap-4 flex-wrap justify-center">
+    </div>
+
+      {userListings && userListings.length > 0 && !showListingButton &&
+      <div className="bg-gradient-to-b from-transparent to-slate-200 w-full">
+        <h1 className="text-center mt-7 text-2xl font-semibold mb-4">Your Listings</h1>
+        
+
+        <div className="flex gap-7 flex-wrap justify-center max-w-6xl mx-auto mb-32">
         {userListings.map((listing)=>(
           
           <div key={listing._id} className="rounded-lg flex flex-col gap-1">
@@ -222,7 +230,7 @@ const handleListingDelete = async(listingId) =>{
 
            <button onClick={()=>handleListingDelete(listing._id)} className="text-white uppercase bg-red-700 rounded-lg w-full sm:w-[270px] p-1 hover:opacity-95">Delete</button>
             
-            <Link to={`/update-listing/${listing._id}`}>
+            <Link to={`/listing/${listing._id}?edit=true`}>
             <button className="text-white uppercase bg-slate-700 rounded-lg w-full sm:w-[270px] p-1 hover:opacity-95">Edit</button>
             </Link>
             
@@ -231,9 +239,11 @@ const handleListingDelete = async(listingId) =>{
           ))
         }
         </div>
+        
       
+        <div className='p-10'></div>
         </div>}
-    </div>
+        </div>
   )
 }
  

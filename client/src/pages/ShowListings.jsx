@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore from 'swiper'
 import { Navigation } from 'swiper/modules'
@@ -7,7 +7,7 @@ import 'swiper/css/bundle'
 import { FaMapMarkedAlt, FaBed, FaBath, FaParking, FaChair } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 import Contact from '../components/Contact'
-
+import ListingUpdater from '../components/ListingUpdater'
 
 
 export default function ShowListings() {
@@ -18,9 +18,14 @@ export default function ShowListings() {
     const [contact, setContact] = useState(false)
     const params = useParams()
     const {currentUser} = useSelector((state) => state.user)
+    const [showUpdate, setShowUpdate] = useState(false)
+
     console.log(listing)
 
     useEffect(()=>{
+        const urlParams = new URLSearchParams(location.search)
+        const edit = urlParams.get('edit')?  true : false
+        setShowUpdate(edit)
         const fetchListing = async ()=>{
             try {
                 setLoading(true)
@@ -43,6 +48,10 @@ export default function ShowListings() {
         fetchListing()
     },[params.listingId])
 
+    const handleClickUpdate = ()=>{
+        setShowUpdate(true)
+    }
+
   return (
     <main className='pt-10 sm:pt-16'>
         {loading && <p className='text-center my-7 text-2x'>Loading...</p>}
@@ -51,13 +60,15 @@ export default function ShowListings() {
         <div>
             <Swiper navigation>
                 {listing.imageUrls.map( url => (
-                    <SwiperSlide key={url}>
+                    <SwiperSlide key={url} className='transition-opacity duration-300 hover:opacity-80'>
+                    <Link to={url} target="_blank" rel="noopener noreferrer">
                     <div style={{
                         maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)',
                         WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)'
-                }}>
+                    }}>
                     <img src={url} alt='Picture not found.' className="w-full h-[350px] sm:h-[550px] object-cover"/>
                     </div>
+                    </Link>
                 </SwiperSlide>
                 ))}
             </Swiper>
@@ -124,13 +135,28 @@ export default function ShowListings() {
                 </li>
                 
             </ul>
+            {currentUser && listing.userRef === currentUser._id && !showUpdate &&
+            
+                <button onClick={handleClickUpdate} className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 w-full'>
+                    Edit your listing
+                </button>
+            
+            }
             {currentUser && listing.userRef !== currentUser._id && !contact &&
             <button onClick={()=>setContact(true)}
-            className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'>Contact Landlord</button>
-            }
+            className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 w-full'>Contact Landlord</button>
+        }
             {contact && <Contact listing={listing}/>}
             </div>
 
+        {currentUser && listing.userRef === currentUser._id && showUpdate &&
+        <div>
+
+            <div className='bg-gradient-to-b from-transparent to-slate-200 w-full'>
+                <ListingUpdater/>
+            </div>
+        </div>
+        }
         </div>
         )}
     </main>

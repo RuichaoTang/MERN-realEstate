@@ -43,7 +43,9 @@ export default function SignUp() {
 
 
   return (
-    <div className='p-3 max-w-lg mx-auto pt-10 sm:pt-16' >
+    <div className=''>
+
+    <div className='p-3 max-w-lg mx-auto pt-10 sm:pt-16 min-h-screen ' >
       <h1 className='text-slate-600 text-2xl sm:text-3xl text-center font-semibold my-7'>Sign Up</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
         <input type = "text" placeholder='Username' className='border p-2 sm:p-3 rounded-lg' id='username' onChange={handleChange} />
@@ -59,6 +61,7 @@ export default function SignUp() {
         </Link>
       </div>
       {error && <p className='text-red-500 mt-5'>{error}</p>}
+    </div>
     </div>
   )
 }

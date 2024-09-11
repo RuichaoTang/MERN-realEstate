@@ -139,6 +139,12 @@ export default function CreateListing() {
     // needs a change here
     const handleSubmit = async (e)=>{
         e.preventDefault()
+        const yesOrNo = window.confirm('Confirm your changes?')
+        if(yesOrNo===false){
+            
+            return
+        }
+
         try {
             if(formData.imageUrls.length < 1) return setError('You must upload at least one image.')
             setLoading(true)
@@ -158,6 +164,7 @@ export default function CreateListing() {
                 setError(data.message)
             }else{
                 navigate(`/listing/${data._id}`)
+                window.location.reload()
             }
         } catch (error) {
             setLoading(false)
@@ -166,8 +173,8 @@ export default function CreateListing() {
     }
 
   return (
-    <main className='p-3 max-w-4xl mx-auto pt-10 sm:pt-16'>
-        <h1 className='text-3xl font-semibold text-center my-7'>Update a Listing</h1>
+    <main className='p-3 max-w-4xl mx-auto pt-4'>
+        <h1 className='text-3xl font-semibold text-center my-7'>Update Your Listing</h1>
         <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
             <div className='flex flex-col gap-4 flex-1'>
                 <input type="text" placeholder='Name' className='border p-3 rounded-lg' id='name' maxLength='62' minLength='5' required onChange={handleChange} value={formData.name}/>
@@ -229,16 +236,16 @@ export default function CreateListing() {
                 <span className='font-normal text-gray-600 ml-2'>The first image will be the cover. (max 6)</span>
                 </p>
                 <div className='flex gap-4'>
-                    <input onChange={(e) => setFile(e.target.files)} className='p-3 border border-gray-300 rounded w-full' type='file' id='images' accept='image/*' multiple/>
-                    <button type='button' onClick={handleImageSubmit} disabled={uploading} className='p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:text-gray-500 disabled:border-gray-500'>{uploading? 'Uploading...':'Upload'}</button>
+                    <input onChange={(e) => setFile(e.target.files)} className='p-3 border border-gray-300 rounded-lg w-full' type='file' id='images' accept='image/*' multiple/>
+                    <button type='button' onClick={handleImageSubmit} disabled={uploading} className='p-3 text-green-700 border font-bold border-green-700 rounded-lg uppercase hover:shadow-lg disabled:text-gray-500 disabled:border-gray-500'>{uploading? 'Uploading...':'Upload'}</button>
                 </div>
                     <p className='text-red-700 m-3'>{imageUploadError? `${imageUploadError}`:""}</p>
                     <div className=''>
                     {
                         formData.imageUrls.length > 0 && formData.imageUrls.map((url, index)=>(
-                            <div key={index} className='flex justify-between p-3 border items-center'>
+                            <div key={index} className='flex justify-between p-3 border rounded-lg items-center'>
                             <img key={url} src={url} alt="listing image" className='w-20 h-20 object-contain rounded-lg'/>
-                            <button onClick={()=>handleRemoveImage(index)} type='button' className='p-3 rounded-lg uppercase hover:opacity-75 cursor-pointer text-sm text-red-700'> Delete </button>
+                            <button onClick={()=>handleRemoveImage(index)} type='button' className='p-2 rounded-lg uppercase hover:opacity-75 cursor-pointer text-sm text-white bg-red-700'> Delete </button>
                             </div>
                         ))
                     }
@@ -247,6 +254,7 @@ export default function CreateListing() {
                     {error && <p className='text-red-700 text-sm'>{error}</p>}
             </div>
         </form>
+        <div className='p-10'></div>
     </main>
   )
 }

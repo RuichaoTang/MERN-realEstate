@@ -117,9 +117,9 @@ export default function Search() {
     },[location.search])
 
   return (
-    <div className='flex flex-col md:flex-row pt-10 sm:pt-16 '>
+    <div className='flex flex-col md:flex-row pt-10 sm:pt-16 min-h-screen w-full'>
         {/* left part */}
-        <div className='p-7 border-b-2 md:border-r-2 md:min-h-screen sm:fixed bg-slate-50'>
+        <div className='p-7 md:h-full sm:fixed bg-gradient-to-b from-slate-200 via-transparent to-transparent z-10'>
             <form className='flex flex-col gap-7' onSubmit={handleSubmit}>
                 <div className='flex items-center gap-2'>
                     <div className='whitespace-nowrap font-semibold'>Search Term</div>
@@ -183,7 +183,7 @@ export default function Search() {
         </div>
 
         {/* right part */}
-        <div className='flex-1 sm:pl-96'>
+        <div className='flex-1 sm:pl-96 '>
             <h1 className='p-3 text-base sm:text-2xl mt-5 font-semibold border-b text-slate-700 text-center '>Listing Result:</h1>
             <div className='p-7 flex flex-wrap gap-4 justify-center'>
                 {!loading && listings.length === 0 && (
@@ -205,11 +205,12 @@ export default function Search() {
                 )
 
                 }
-
+                <div className='p-10'></div>
             </div>
         </div>
 
 
+        <div className='p-10'></div>
     </div>
   )
 }

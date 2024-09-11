@@ -51,7 +51,7 @@ export default function Home() {
 
 
   return (
-    <div className='pt-10 sm:pt-16'>
+    <div className='pt-10 sm:pt-16 min-h-screen'>
       {/* top */}
         <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
           <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>Find your next <span className='text-slate-400'>
@@ -94,6 +94,7 @@ export default function Home() {
       )}
     </Swiper>
 
+    <div className='bg-gradient-to-b from-transparent to-slate-200 w-full'>
 
       {/* listing results for offer, sale and rent */}
         <div className='max-w-6xl mx-auto p-3 flex flex-col my-10 gap-8'>
@@ -140,6 +141,8 @@ export default function Home() {
           )}
 
         </div>
+        <div className='p-10'></div>
+          </div>
     </div>
   )
 }

@@ -57,7 +57,9 @@ export default function SignIn() {
   };
 
   return (
-    <div className='p-3 max-w-lg mx-auto pt-10 sm:pt-16'>
+    <div className=''>
+
+    <div className='p-3 max-w-lg mx-auto pt-10 sm:pt-16 min-h-screen'>
       <h1 className='text-slate-600 text-2xl sm:text-3xl text-center font-semibold my-7'>Sign In</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
         <input
@@ -66,20 +68,20 @@ export default function SignIn() {
           className='border p-2 sm:p-3 rounded-lg'
           id='email'
           onChange={handleChange}
-        />
+          />
         <input
           type='password'
           placeholder='Password'
           className='border p-2 sm:p-3 rounded-lg'
           id='password'
           onChange={handleChange}
-        />
+          />
         <button
           disabled={loading}
           className={`bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 ${
             loading ? 'opacity-80 cursor-not-allowed' : ''
           }`}
-        >
+          >
           {loading ? 'Loading...' : 'Sign In'}
         </button>
         <OAuth />
@@ -91,6 +93,7 @@ export default function SignIn() {
         </Link>
       </div>
       {error && <p className='text-red-500 mt-5 text-center'>{error}</p>}
-    </div>
+      </div>
+      </div>
   );
 }
