@@ -179,6 +179,7 @@ export default function CreateListing() {
             <div className='flex flex-col gap-4 flex-1'>
                 <input type="text" placeholder='Name' className='border p-3 rounded-lg' id='name' maxLength='62' minLength='5' required onChange={handleChange} value={formData.name}/>
                 <textarea type="text" placeholder='Description' className='border p-3 rounded-lg' id='description' required onChange={handleChange} value={formData.description}/>
+                
                 <input type="text" placeholder='Address' className='border p-3 rounded-lg' id='address' required onChange={handleChange} value={formData.address}/>
             <div className='flex gap-6 flex-wrap'>
                 <div className='flex gap-2'>
@@ -231,19 +232,19 @@ export default function CreateListing() {
             </div>
             
             </div>
-            <div className='flex flex-col flex-1 gap-4'>
+            <div className='flex flex-col flex-1 gap-2'>
                 <p className='font-semibold'>Images:
                 <span className='font-normal text-gray-600 ml-2'>The first image will be the cover. (max 6)</span>
                 </p>
                 <div className='flex gap-4'>
-                    <input onChange={(e) => setFile(e.target.files)} className='p-3 border border-gray-300 rounded-lg w-full' type='file' id='images' accept='image/*' multiple/>
+                    <input onChange={(e) => setFile(e.target.files)} className='p-3 border bg-white border-gray-300 rounded-lg w-full' type='file' id='images' accept='image/*' multiple/>
                     <button type='button' onClick={handleImageSubmit} disabled={uploading} className='p-3 text-green-700 border font-bold border-green-700 rounded-lg uppercase hover:shadow-lg disabled:text-gray-500 disabled:border-gray-500'>{uploading? 'Uploading...':'Upload'}</button>
                 </div>
                     <p className='text-red-700 m-3'>{imageUploadError? `${imageUploadError}`:""}</p>
                     <div className=''>
                     {
                         formData.imageUrls.length > 0 && formData.imageUrls.map((url, index)=>(
-                            <div key={index} className='flex justify-between p-3 border rounded-lg items-center'>
+                            <div key={index} className='flex justify-between p-3 border rounded-lg items-center bg-white'>
                             <img key={url} src={url} alt="listing image" className='w-20 h-20 object-contain rounded-lg'/>
                             <button onClick={()=>handleRemoveImage(index)} type='button' className='p-2 rounded-lg uppercase hover:opacity-75 cursor-pointer text-sm text-white bg-red-700'> Delete </button>
                             </div>
@@ -256,5 +257,7 @@ export default function CreateListing() {
         </form>
         <div className='p-10'></div>
     </main>
+
+    
   )
 }
