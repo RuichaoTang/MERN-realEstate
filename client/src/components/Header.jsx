@@ -45,7 +45,7 @@ export default function Header() {
                 </button>
             </form>
 
-            <ul className='flex gap-5 items-center'>
+            <ul className='flex gap-5 items-center mx-3'>
                 <Link to='/'>
                 <li className='hidden sm:inline text-slate-700 hover:underline'>Home</li>
                 </Link>
@@ -55,9 +55,9 @@ export default function Header() {
 
                 <Link to='/profile'>
                 {currentUser ? (
-                    <img className='rounded-full h-7 w-7 sm:h-11 sm:w-11 object-cover mx-3' src={currentUser.avatar} alt="" />
+                    <img className='rounded-full h-7 w-7 sm:h-11 sm:w-11 object-cover' src={currentUser.avatar} alt="" />
 
-                ) : (<li className='text-slate-700 hover:underline mx-3'>Sign in</li>)
+                ) : (<li className='text-slate-700 hover:underline'>Sign in</li>)
                 }
                 </Link>
                 

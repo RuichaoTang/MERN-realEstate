@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore from 'swiper'
-import { Navigation, Autoplay } from 'swiper/modules'
+import { Navigation, Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css/bundle'
 import { FaMapMarkedAlt, FaBed, FaBath, FaParking, FaChair } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
@@ -11,7 +11,7 @@ import ListingUpdater from '../components/ListingUpdater'
 
 
 export default function ShowListings() {
-    SwiperCore.use([ Navigation, Autoplay ])
+    SwiperCore.use([ Navigation, Autoplay, Pagination ])
     const [listing, setListing] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
@@ -65,6 +65,10 @@ export default function ShowListings() {
         }}
         loop={true} // 是否循环播放
         speed={500} // 翻页的速度，单位是毫秒
+        pagination={{ clickable: true,
+        }}
+       spaceBetween={30}
+       slidesPerView={1}
         >
                 {listing.imageUrls.map( url => (
                     <SwiperSlide key={url} className='transition-opacity duration-300 hover:opacity-80'>

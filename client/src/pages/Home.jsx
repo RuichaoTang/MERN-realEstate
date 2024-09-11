@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom'
 import {Swiper, SwiperSlide} from 'swiper/react' 
 import 'swiper/css/bundle'
 import SwiperCore from 'swiper'
-import {Navigation, Autoplay} from 'swiper/modules'
+import {Navigation, Autoplay, Pagination} from 'swiper/modules'
 import ListingCard from '../components/ListingCard'
+
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([])
   const [saleListings, setSaleListings] = useState([])
   const [rentListings, setRentListings] = useState([])
-  SwiperCore.use([Navigation, Autoplay])
+  SwiperCore.use([Navigation, Autoplay, Pagination])
 
   console.log(offerListings)
   useEffect(()=>{
@@ -58,22 +59,29 @@ export default function Home() {
             perfect</span> <br/>
           place with ease
           </h1>
-          <div className='text-gray-400 text-xs sm:text-sm'>
+          <Link to={'/about'}>
+          <div className='text-gray-400 text-xs sm:text-sm hover:text-slate-700 transition-colors duration-300'>
             NestLand is the place to find your next perfect place to live.<br/>
             We have a wide range of properties for you to choose from.
           </div>
+          </Link>
           <Link to={"/search"} className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'>
             Let's get started...
           </Link>
         </div>
       {/* swiper */}
-      <Swiper navigation autoplay={{
+      <Swiper navigation
+          autoplay={{
           delay: 4000, // 自动翻页的时间间隔，单位是毫秒
           disableOnInteraction: true, // 是否在用户交互时禁用自动播放
-          pauseOnMouseEnter: true,
-        }}
-        loop={true} // 是否循环播放
-        speed={500} // 翻页的速度，单位是毫秒
+          pauseOnMouseEnter: true,}}
+          modules={[Pagination]}
+          pagination={{ clickable: true,
+           }}
+          spaceBetween={30}
+          slidesPerView={1}
+          loop={true} // 是否循环播放
+          speed={500} // 翻页的速度，单位是毫秒
         >
 
       {offerListings && offerListings.length>0 && (
@@ -92,7 +100,9 @@ export default function Home() {
           </SwiperSlide>
         )})
       )}
+   
     </Swiper>
+    
 
     <div className='bg-gradient-to-b from-transparent to-slate-200 w-full'>
 

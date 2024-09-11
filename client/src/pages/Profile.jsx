@@ -69,6 +69,10 @@ const handleChange = (e)=>{
 
 const handleSubmit = async (e) =>{
   e.preventDefault()
+  const yesOrNo = window.confirm('Update your profile?')
+  if(yesOrNo===false){
+    return 
+  }
   try {
     dispatch(updateUserStart())
     const res = await fetch(`/api/user/update/${currentUser._id}`, {
@@ -182,7 +186,7 @@ const handleListingDelete = async(listingId) =>{
           setFileUploadError(false)
           setFilePerc(false)
           fileRef.current.click()
-        }} src={formData.avatar || currentUser.avatar} alt="profile" className="rounded-full h-24 w-24 object-cover cursor-pointer self-center m-2" />
+        }} src={formData.avatar || currentUser.avatar} alt="profile" className="rounded-full h-24 w-24 object-cover cursor-pointer self-center m-2 hover:scale-105 transition-scale duration-300" />
         <p className="text-sm self-center">
           {fileUploadError ?
             <span className="text-red-700">Error Image Upload. (Image must be less than 2MB)</span> :
@@ -195,34 +199,40 @@ const handleListingDelete = async(listingId) =>{
               )
             }
         </p>
-        <input type="text" defaultValue={currentUser.username} placeholder="username" id='username' className="border p-3 rounded-lg" onChange={handleChange}/>
-        <input type="email" defaultValue={currentUser.email} placeholder="email" id='email' className="border p-3 rounded-lg" onChange={handleChange}/>
-        <input type="password" placeholder="password" id='password' className="border p-3 rounded-lg" onChange={handleChange}/>
+        <input type="text" defaultValue={currentUser.username} placeholder="username" id='username' className="border p-3 rounded-lg hover:shadow-lg hover:border-blue-900 transition-border duration-300" onChange={handleChange}/>
+        <input type="email" defaultValue={currentUser.email} placeholder="email" id='email' className="border p-3 rounded-lg hover:shadow-lg hover:border-blue-900 transition-border duration-300" onChange={handleChange}/>
+        <input type="password" placeholder="password" id='password' className="border p-3 rounded-lg hover:shadow-lg hover:border-blue-900 transition-border duration-300" onChange={handleChange}/>
         <button disabled={loading} className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80">{loading ? 'Loading...' : 'Update'}</button>
         <Link className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95" to="/create-listing" >Create Listing</Link>
       </form>
       <div className="flex justify-between mt-5">
-        <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer">Delete Account</span>
-        <span onClick={handleSignOut} className="text-black cursor-pointer">Sign Out</span>
+        <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer hover:underline">Delete Account</span>
+        <span onClick={handleSignOut} className="text-black cursor-pointer hover:underline">Sign Out</span>
       </div>
       <p className="text-red-700 mt-5">{error ? error : ""}</p>
       <p className="text-green-700 mt-5">{updateSuccess ? "User is updated successfully!" : ""}</p>
-      {showListingButton && <button onClick={handleShowListings} className="text-green-700 uppercase w-full rounded-lg p-3 ">Show listings</button>}
+      {showListingButton && <button onClick={handleShowListings} className="text-green-700 uppercase w-full rounded-lg p-3 hover:underline">Show listings</button>}
       <p className="text-red-700 mt-5">{showListingsError? showListingsError.message : ''}</p>
       
       </div>
-      {!userListings && <h1 className="text-center mt-7 text-2xl font-semibold">You have no listing.</h1>}
+      {!showListingButton && userListings && userListings.length<1 && 
+      <Link to={'/create-listing'}>
+      <h1 className="text-center text-2xl font-base text-slate-600 p-16 hover:underline">You have no listing. Create one.</h1>
+
+      </Link>
+      }
 
     </div>
 
       {userListings && userListings.length > 0 && !showListingButton &&
-      <div className="bg-gradient-to-b from-transparent to-slate-200 w-full">
+      <div className="bg-gradient-to-b from-transparent to-slate-200 max-w-full w-full">
         <h1 className="text-center mt-7 text-2xl font-semibold mb-4">Your Listings</h1>
         
 
-        <div className="flex gap-7 flex-wrap justify-center max-w-6xl mx-auto mb-32">
+        <div className="flex gap-10 flex-wrap justify-center mx-auto max-w-6xl p-3 mb-32">
         {userListings.map((listing)=>(
-          
+          <div className="gap-4">
+
           <div key={listing._id} className="rounded-lg flex flex-col gap-1">
           <Link to={`/listing/${listing._id}`}>
             <ListingCard listing={listing}/>
@@ -236,14 +246,16 @@ const handleListingDelete = async(listingId) =>{
             
           
           </div>
-          ))
+          </div>
+          )
+          )
         }
         </div>
         
       
         <div className='p-10'></div>
         </div>}
-        </div>
+    </div>
   )
 }
  
