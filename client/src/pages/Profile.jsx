@@ -17,7 +17,7 @@ export default function Profile() {
   const [updateSuccess, setUpdateSuccess] = useState(false)
   const [ showListingsError, setShowListingsError ] = useState(false)
   const [ userListings, setUserListings ] = useState([])
-  console.log(userListings)
+  // console.log(userListings)
   // console.log(fileUploadError)
 
   

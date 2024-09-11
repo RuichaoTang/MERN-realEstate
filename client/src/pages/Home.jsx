@@ -71,7 +71,7 @@ export default function Home() {
 
       {offerListings && offerListings.length>0 && (
         offerListings.map((listing)=>(
-          <SwiperSlide>
+          <SwiperSlide key={`${listing._id}D`}>
             <div style={{background: `url(${listing.imageUrls[0]}) center no-repeat`, backgroundSize:"cover"}} className='h-[300px] sm:h-[500px]' key={listing._id}></div>
           </SwiperSlide>
         ))
@@ -89,7 +89,7 @@ export default function Home() {
               </div>
             <div className='flex flex-wrap gap-4'>
               {offerListings.map((listing)=>(
-                <ListingCard listing={listing} key={listing._id}></ListingCard>
+                <ListingCard listing={listing} key={`${listing._id}C`}></ListingCard>
               ))}
             </div>
             </div>
@@ -103,7 +103,7 @@ export default function Home() {
               </div>
             <div className='flex flex-wrap gap-4'>
               {rentListings.map((listing)=>(
-                <ListingCard listing={listing} key={listing._id}></ListingCard>
+                <ListingCard listing={listing} key={`${listing._id}B`}></ListingCard>
               ))}
             </div>
             </div>
@@ -117,7 +117,7 @@ export default function Home() {
               </div>
             <div className='flex flex-wrap gap-4'>
               {saleListings.map((listing)=>(
-                <ListingCard listing={listing} key={listing._id}></ListingCard>
+                <ListingCard listing={listing} key={`${listing._id}A`}></ListingCard>
               ))}
             </div>
             </div>
