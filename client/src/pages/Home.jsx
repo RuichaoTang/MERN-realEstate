@@ -69,7 +69,7 @@ export default function Home() {
       {/* swiper */}
       <Swiper navigation autoplay={{
           delay: 4000, // 自动翻页的时间间隔，单位是毫秒
-          disableOnInteraction: false, // 是否在用户交互时禁用自动播放
+          disableOnInteraction: true, // 是否在用户交互时禁用自动播放
           pauseOnMouseEnter: true,
         }}
         loop={true} // 是否循环播放

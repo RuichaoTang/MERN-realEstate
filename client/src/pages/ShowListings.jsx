@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore from 'swiper'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Autoplay } from 'swiper/modules'
 import 'swiper/css/bundle'
 import { FaMapMarkedAlt, FaBed, FaBath, FaParking, FaChair } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
@@ -11,7 +11,7 @@ import ListingUpdater from '../components/ListingUpdater'
 
 
 export default function ShowListings() {
-    SwiperCore.use([ Navigation ])
+    SwiperCore.use([ Navigation, Autoplay ])
     const [listing, setListing] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
@@ -58,7 +58,14 @@ export default function ShowListings() {
         {error && <p className='text-center my-7 text-2x'>Something went wrong!</p>}
         {listing && !loading && !error && (
         <div>
-            <Swiper navigation>
+            <Swiper navigation autoplay={{
+          delay: 4000, // 自动翻页的时间间隔，单位是毫秒
+          disableOnInteraction: true, // 是否在用户交互时禁用自动播放
+          pauseOnMouseEnter: true,
+        }}
+        loop={true} // 是否循环播放
+        speed={500} // 翻页的速度，单位是毫秒
+        >
                 {listing.imageUrls.map( url => (
                     <SwiperSlide key={url} className='transition-opacity duration-300 hover:opacity-80'>
                     <Link to={url} target="_blank" rel="noopener noreferrer">
