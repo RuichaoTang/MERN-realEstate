@@ -135,16 +135,22 @@ export default function ShowListings() {
                 </li>
                 
             </ul>
+            {!currentUser && <div className='mt-16'>
+                    <Link to={'/sign-in'}>
+                    
+                    <button className='bg-slate-700 text-white font-semibold rounded-lg hover:opacity-95 p-3 w-full mb-16'>Sign in for more information!</button>
+                    </Link>
+                </div>}
             {currentUser && listing.userRef === currentUser._id && !showUpdate &&
             
-                <button onClick={handleClickUpdate} className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 w-full'>
+                <button onClick={handleClickUpdate} className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 w-full mt-16 mb-16'>
                     Edit your listing
                 </button>
             
             }
             {currentUser && listing.userRef !== currentUser._id && !contact &&
             <button onClick={()=>setContact(true)}
-            className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 w-full'>Contact Landlord</button>
+            className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 w-full mt-16 mb-16'>Contact Landlord</button>
         }
             {contact && <Contact listing={listing}/>}
             </div>

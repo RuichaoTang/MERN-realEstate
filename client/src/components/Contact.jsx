@@ -23,7 +23,7 @@ export default function Contact({listing}) {
     ,[listing.userRef])
 
     return (
-        <div>
+        <div className='mb-16'>
         {landlord && (
             <div className='flex flex-col gap-2'>
                 <p>Contact <span className='font-semibold'>{landlord.username}</span> for <span className='font-semibold'>{listing.name.toLowerCase()}</span>
