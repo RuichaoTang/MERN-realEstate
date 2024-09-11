@@ -26,7 +26,7 @@ export default function Header() {
     },[location.search])
 
   return (
-    <header className='bg-slate-200 shadow-md p-1 sm:p-3 fixed top-0 left-0 right-0 z-10'>
+      <header className='bg-slate-200 shadow-md p-1 sm:p-3 fixed top-0 left-0 right-0 z-10'>
         <div className='flex justify-between items-center max-w-lg sm:max-w-6xl mx-auto'>
             <Link to='/'>
             <h1 className='mx-3 font-bold text-xl sm:text-2xl flex flex-wrap'>

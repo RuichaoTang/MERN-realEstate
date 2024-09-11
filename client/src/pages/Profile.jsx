@@ -137,6 +137,7 @@ const handleShowListings = async ()=>{
 }
 
 const handleListingDelete = async(listingId) =>{
+  window.PopStateEvent
   try {
     const res = await fetch(`/api/listing/delete/${listingId}`,{
       method: 'DELETE'
