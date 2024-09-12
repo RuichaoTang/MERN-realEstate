@@ -83,16 +83,22 @@ export const getRandom = async (req, res, next) => {
         let offer = req.query.offer;
         if (offer === undefined || offer === 'false') {
             offer = { $in: [false, true] };
+        }else if(offer === 'true'){
+            offer = true
         }
 
         let furnished = req.query.furnished;
         if (furnished === undefined || furnished === 'false') {
             furnished = { $in: [false, true] };
+        }else if(furnished === 'true'){
+            furnished = true
         }
 
         let parking = req.query.parking;
         if (parking === undefined || parking === 'false') {
             parking = { $in: [false, true] };
+        }else if(parking === 'true'){
+            parking = true
         }
 
         let type = req.query.type;
