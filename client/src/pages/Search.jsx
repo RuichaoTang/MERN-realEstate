@@ -193,7 +193,7 @@ export default function Search() {
                     <p className='text-slate-700 text-xl text-center w-full'>Loading...</p>
                 )}
 
-                <div className='flex gap-4 flex-wrap'>
+                <div className='flex gap-4 flex-wrap w-full sm:w-[270px]'>
 
                 {!loading && listings && listings.map((listing)=>(
                     <div className='gap-4 w-full sm:w-[270px]' key={listing._id}>
