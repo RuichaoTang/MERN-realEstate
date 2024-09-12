@@ -31,7 +31,7 @@ export default function Header() {
     <div className='flex justify-center items-center w-full'>
       <div className='flex justify-between items-center max-w-lg sm:max-w-6xl w-full px-4'>
         <Link to='/' title='Home' onClick={() => { window.scrollTo(0, 0) }}>
-          <h1 className='mx-3 font-bold text-base sm:text-2xl flex flex-wrap'>
+          <h1 className='mx-1 sm:mx-3 font-bold text-base sm:text-2xl flex flex-wrap'>
             <span className='text-slate-500'>Nest</span>
             <span className='text-slate-700'>Land</span>
           </h1>
@@ -58,7 +58,7 @@ export default function Header() {
             <li className='hidden sm:inline text-slate-700 hover:underline'>About</li>
           </Link>
   
-          <div className='flex gap-3 sm:gap-5 items-center'>
+          <div className='flex flex-wrap gap-3 sm:gap-5  justify-center items-center mx-auto sm:mx-0'>
             <Link to='/profile' title='Profile' onClick={() => window.scrollTo(0, 0)}>
               {currentUser ? (
                 <img className='rounded-full h-7 w-7 sm:h-11 sm:w-11 object-cover' src={currentUser.avatar} alt="Profile" />
@@ -67,7 +67,7 @@ export default function Header() {
               )}
             </Link>
             <Link to={'/about'} onClick={() => window.scrollTo(0, 0)} title='About'>
-              <i className="block sm:hidden fas fa-info scale-75 hover:text-slate-400 transition-colors duration-200 text-slate-300"></i>
+              <i className="block mx-auto sm:hidden fas fa-info scale-75  hover:text-slate-400 transition-colors duration-200 text-slate-300"></i>
             </Link>
           </div>
         </ul>
