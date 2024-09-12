@@ -185,20 +185,26 @@ export default function Search() {
         {/* right part */}
         <div className='flex-1 sm:ml-96 '>
             <h1 className='p-3 text-base sm:text-2xl mt-5 font-semibold border-b text-slate-700 text-center '>Listing Result:</h1>
-            <div className='sm:p-7 p-3 flex flex-wrap gap-4 justify-items-center'>
+            <div className='sm:p-7 p-3 flex flex-wrap gap-4'>
                 {!loading && listings.length === 0 && (
                     <p className='text-slate-700 text-xl'>Nothing found.</p>
                 )}
                 {loading && (
                     <p className='text-slate-700 text-xl text-center w-full'>Loading...</p>
                 )}
+
+                <div className='flex gap-4 flex-wrap'>
+
                 {!loading && listings && listings.map((listing)=>(
-                    <div className='flex flex-wrap gap-4 w-full' key={listing._id}>
+                    <div className='gap-4 w-full sm:w-[270px]' key={listing._id}>
                         <ListingCard listing={listing}/>
 
                     </div>
                 ))
-                }
+            }
+            </div>
+          
+
                 {showMore && (
                     <button onClick={
                         onShowMoreClick

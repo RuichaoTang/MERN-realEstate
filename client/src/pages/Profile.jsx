@@ -174,6 +174,16 @@ const handleListingDelete = async(listingId) =>{
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-transparent to-slate-200 w-full">
+      {/* banner */}
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/mern-estate-c1d3f.appspot.com/o/1726135812598pixlr-image-generator-0a9aaa1e-0d0b-42ac-b407-dfb1e5f82b42.png?alt=media&token=ca194743-0d0c-4280-af4f-4110579ecba6" // Replace with your image path
+        alt=""
+        className="w-full h-64 object-cover fixed opacity-5"
+        style={{
+          maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 40%)',
+          WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 40%)'
+        }}
+      />
 
     <div className="pt-10 sm:pt-16 max-w-6xl mx-auto">
 
@@ -232,9 +242,9 @@ const handleListingDelete = async(listingId) =>{
 
         <div className="flex gap-10 flex-wrap justify-center mx-auto max-w-6xl p-3 mb-32">
         {userListings.map((listing)=>(
-          <div className="gap-4 flex flex-col w-full" key={listing._id}>
+          <div className="gap-4 flex flex-col w-full sm:w-[270px]" key={listing._id}>
 
-          <div className="rounded-lg w-full flex flex-col gap-1">
+          <div className="rounded-lg w-full sm:w-[270px] flex flex-col gap-1">
           <Link to={`/listing/${listing._id}`}>
             <ListingCard listing={listing}/>
           </Link>

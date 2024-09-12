@@ -54,6 +54,16 @@ export default function Home() {
 
   return (
     <div className='pt-10 sm:pt-16 min-h-screen'>
+      {/* banner */}
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/mern-estate-c1d3f.appspot.com/o/1726135812598pixlr-image-generator-0a9aaa1e-0d0b-42ac-b407-dfb1e5f82b42.png?alt=media&token=ca194743-0d0c-4280-af4f-4110579ecba6" // Replace with your image path
+        alt=""
+        className="w-full h-64 object-cover fixed opacity-5"
+        style={{
+          maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 40%)',
+          WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 40%)'
+        }}
+      />
       {/* top */}
       <div className="dynamic-background flex items-center justify-center sm:items-start sm:justify-start" >
       {/* <h1 class="text-4xl font-bold text-white">Animated Background</h1> */}
@@ -94,7 +104,7 @@ export default function Home() {
 
       {offerListings && offerListings.length>0 && (
         offerListings.map((listing)=>{
-          console.log(listing)
+          // console.log(listing)
           return(
           <SwiperSlide key={listing._id}>
             <Link to={`/listing/${listing._id}`} title='Show This Listing'>

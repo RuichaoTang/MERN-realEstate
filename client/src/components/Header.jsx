@@ -46,20 +46,22 @@ export default function Header() {
                 </button>
             </form>
 
-            <ul className='flex gap-5 items-center mx-3'>
+            <ul className='flex flex-wrap gap-5 items-center mr-3'>
                 <Link to='/' onClick={() => window.scrollTo(0, 0)} title='Home'>
                 <li className='hidden sm:inline text-slate-700 hover:underline'>Home</li>
                 </Link>
                 <Link to='about' onClick={() => window.scrollTo(0, 0)} title='About'>
                 <li className='hidden sm:inline text-slate-700 hover:underline'>About</li>
                 </Link>
-
                 <Link to='/profile' title='Profile' onClick={() => window.scrollTo(0, 0)}>
                 {currentUser ? (
                     <img className='rounded-full h-7 w-7 sm:h-11 sm:w-11 object-cover' src={currentUser.avatar} alt="" />
 
                 ) : (<li className='text-slate-700 hover:underline'>Sign in</li>)
                 }
+                </Link>
+                <Link to={'/about'} onClick={() => window.scrollTo(0, 0)} title='About' >
+                <i className="block sm:hidden fas fa-info scale-75 hover:text-slate-400 transition-colors duration-200 text-slate-300 "></i>
                 </Link>
                 
             </ul>
