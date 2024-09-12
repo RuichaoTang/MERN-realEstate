@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function About() {
   return (
-    <div className='pt-10 sm:pt-16 flex flex-col min-h-screen w-full'>
+    <div className='about-background pt-10 sm:pt-16 flex flex-col min-h-screen w-full'>
       {/* banner */}
       <img
         src="https://firebasestorage.googleapis.com/v0/b/mern-estate-c1d3f.appspot.com/o/1726135812598pixlr-image-generator-0a9aaa1e-0d0b-42ac-b407-dfb1e5f82b42.png?alt=media&token=ca194743-0d0c-4280-af4f-4110579ecba6" // Replace with your image path
@@ -39,7 +39,7 @@ export default function About() {
     </div>
 
       {/* About the Author */}
-      <div className="about-container max-w-3xl mx-auto py-12 px-6 rounded-lg">
+      <div className="max-w-3xl mx-auto py-12 px-6 rounded-lg">
         <h1 className="text-xl sm:text-2xl font-bold text-slate-600 mb-6 pt-7 tracking-wider">About The Author</h1>
         
         <p className="text-base sm:text-lg text-slate-600 mb-6 ">
