@@ -29,7 +29,7 @@ export default function Header() {
   return (
       <header className='bg-slate-200  p-1 sm:p-3 fixed top-0 left-0 right-0 z-20'>
         <div className='flex justify-between items-center max-w-lg sm:max-w-6xl mx-auto'>
-            <Link to='/'>
+            <Link to='/' title='Home' onClick={()=>{window.scrollTo(0,0)}}>
             <h1 className='mx-3 font-bold text-xl sm:text-2xl flex flex-wrap'>
                 <span className='text-slate-500'>Nest</span>
                 <span className='text-slate-700'>Land</span>

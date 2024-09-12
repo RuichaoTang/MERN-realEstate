@@ -25,17 +25,17 @@
                 rgb(40, 233, 40) /* A bit more contrast */
             );
             animation: dynamicBackground 6s ease infinite;
-                background-size: 300% 300%;
+                background-size: 200% 200%;
             }.animated-background {
-            background: linear-gradient(45deg,rgba(241, 245, 242, 1), rgba(241, 245, 241, 1),rgb(40, 233, 40));
-            background-size: 700% 700%; /* Larger background size for smooth animation */
+            background: linear-gradient(45deg,rgba(241, 245, 242, 1), rgba(94, 222, 94, 0),rgb(40, 233, 40));
+            background-size: 1000% 1000%; /* Larger background size for smooth animation */
             animation: dynamicBackground 1s ease infinite; /* Infinite loop with a 10s duration */
         }
         }
         /* Smaller background for mobile */
         @media (max-width: 799px) {
             .dynamic-background {background: linear-gradient(75deg, 
-                rgba(255, 255, 255, 0), /* Center color */
+              rgb(110, 110, 173), /* Center color */
                 rgba(241, 245, 241, 1),
                 rgba(241, 245, 241, 1),
                 rgb(40, 233, 40)
@@ -43,8 +43,8 @@
             animation: dynamicBackground 6s ease infinite;
             background-size: 250% 250%;
             }.animated-background {
-            background: linear-gradient(45deg,rgba(241, 245, 242, 1), rgba(241, 245, 241, 1),rgb(40, 233, 40));
-            background-size: 250% 250%;
+            background: linear-gradient(75deg,rgba(241, 245, 242, 1), rgba(241, 245, 241, 1),rgb(40, 233, 40));
+            background-size: 500% 500%;
             animation: dynamicBackground 1s ease infinite; /* Infinite loop with a 10s duration */
             }}
           
