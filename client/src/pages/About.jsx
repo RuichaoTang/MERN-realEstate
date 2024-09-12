@@ -3,6 +3,17 @@ import React from 'react'
 export default function About() {
   return (
     <div className='pt-10 sm:pt-16 flex flex-col min-h-screen w-full'>
+      {/* banner */}
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/mern-estate-c1d3f.appspot.com/o/1726135812598pixlr-image-generator-0a9aaa1e-0d0b-42ac-b407-dfb1e5f82b42.png?alt=media&token=ca194743-0d0c-4280-af4f-4110579ecba6" // Replace with your image path
+        alt=""
+        className="w-full h-64 object-cover"
+        style={{
+          maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 40%)',
+          WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 40%)'
+        }}
+      />
+      
 
       {/* About the Author */}
       <div className="about-container max-w-3xl mx-auto py-12 px-6 rounded-lg">
