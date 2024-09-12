@@ -14,6 +14,7 @@ export default function Header() {
         urlParams.set('searchTerm', searchTerm)
         const searchQuery = urlParams.toString()
         navigate(`search?${searchQuery}`)
+        window.scrollTo(0, 0)
     }
 
     useEffect(()=>{
@@ -26,7 +27,7 @@ export default function Header() {
     },[location.search])
 
   return (
-      <header className='bg-slate-200 shadow-md p-1 sm:p-3 fixed top-0 left-0 right-0 z-20'>
+      <header className='bg-slate-200 shadow-md p-2 sm:p-3 fixed top-0 left-0 right-0 z-20'>
         <div className='flex justify-between items-center max-w-lg sm:max-w-6xl mx-auto'>
             <Link to='/'>
             <h1 className='mx-3 font-bold text-xl sm:text-2xl flex flex-wrap'>
@@ -46,14 +47,14 @@ export default function Header() {
             </form>
 
             <ul className='flex gap-5 items-center mx-3'>
-                <Link to='/'>
+                <Link to='/' onClick={() => window.scrollTo(0, 0)} title='Home'>
                 <li className='hidden sm:inline text-slate-700 hover:underline'>Home</li>
                 </Link>
-                <Link to='about'>
+                <Link to='about' onClick={() => window.scrollTo(0, 0)} title='About'>
                 <li className='hidden sm:inline text-slate-700 hover:underline'>About</li>
                 </Link>
 
-                <Link to='/profile'>
+                <Link to='/profile' title='Profile' onClick={() => window.scrollTo(0, 0)}>
                 {currentUser ? (
                     <img className='rounded-full h-7 w-7 sm:h-11 sm:w-11 object-cover' src={currentUser.avatar} alt="" />
 

@@ -117,7 +117,7 @@ export default function Search() {
     },[location.search])
 
   return (
-    <div className='flex flex-col md:flex-row pt-10 sm:pt-16 min-h-screen bg-gradient-to-b from-transparent to-slate-200 w-full'>
+    <div className='flex flex-col md:flex-row pt-12 sm:pt-16 min-h-screen bg-gradient-to-b sm:bg-gradient-to-r from-transparent via-transparent to-slate-200 w-full'>
         {/* left part */}
         <div className='p-7 md:h-full sm:fixed bg-gradient-to-b from-slate-200 via-transparent to-transparent z-10'>
             <form className='flex flex-col gap-7' onSubmit={handleSubmit}>
@@ -183,7 +183,7 @@ export default function Search() {
         </div>
 
         {/* right part */}
-        <div className='flex-1 sm:pl-96'>
+        <div className='flex-1 sm:ml-96 '>
             <h1 className='p-3 text-base sm:text-2xl mt-5 font-semibold border-b text-slate-700 text-center '>Listing Result:</h1>
             <div className='p-7 flex flex-wrap gap-4 justify-items-center'>
                 {!loading && listings.length === 0 && (

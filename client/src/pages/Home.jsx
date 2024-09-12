@@ -52,20 +52,24 @@ export default function Home() {
 
 
   return (
-    <div className='pt-10 sm:pt-16 min-h-screen'>
+    <div className='pt-12 sm:pt-16 min-h-screen'>
       {/* top */}
         <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
-          <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>Find your next <span className='text-slate-400'>
-            perfect</span> <br/>
-          place with ease
+          <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>Effortless home{'\u00A0'}
+            <Link to={'/search'} title='Search' onClick={()=>window.scrollTo(0,0)}>
+            <span className='text-slate-400 hover:text-slate-500 transition-colors duration-300'>
+          search</span>
+            </Link>
+          
+          <br/>just for you
           </h1>
-          <Link to={'/about'}>
-          <div className='text-gray-400 text-xs sm:text-sm hover:text-slate-700 transition-colors duration-300'>
-            NestLand is the place to find your next perfect place to live.<br/>
-            We have a wide range of properties for you to choose from.
+          <Link to={'/about'} title='About'>
+          <div className='text-gray-400 text-xs sm:text-sm hover:text-gray-500 transition-colors duration-300'>
+          Your perfect home is just a click away at NestLand. <br/>
+          Explore our wide range of property options to find the one that fits you best.
           </div>
           </Link>
-          <Link to={"/search"} className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'>
+          <Link to={"/search"} className='text-xs sm:text-sm text-blue-800 font-bold hover:underline' title='search'>
             Let's get started...
           </Link>
         </div>
@@ -89,7 +93,7 @@ export default function Home() {
           console.log(listing)
           return(
           <SwiperSlide key={listing._id}>
-            <Link to={`/listing/${listing._id}`}>
+            <Link to={`/listing/${listing._id}`} title='Show This Listing'>
             <div style={{
               maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)',
               WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)'

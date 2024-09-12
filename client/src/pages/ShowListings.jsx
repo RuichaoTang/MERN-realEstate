@@ -53,7 +53,7 @@ export default function ShowListings() {
     }
 
   return (
-    <main className='pt-10 sm:pt-16'>
+    <main className='pt-12 sm:pt-16'>
         {loading && <p className='text-center my-7 text-2x'>Loading...</p>}
         {error && <p className='text-center my-7 text-2x'>Something went wrong!</p>}
         {listing && !loading && !error && (
@@ -72,7 +72,7 @@ export default function ShowListings() {
         >
                 {listing.imageUrls.map( url => (
                     <SwiperSlide key={url} className='transition-opacity duration-300 hover:opacity-80'>
-                    <Link to={url} target="_blank" rel="noopener noreferrer">
+                    <Link to={url} target="_blank" rel="noopener noreferrer" title='See Full Image'>
                     <div style={{
                         maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)',
                         WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)'
