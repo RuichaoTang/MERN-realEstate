@@ -46,7 +46,7 @@ export default function Header() {
                 </button>
             </form>
 
-            <ul className='flex gap-5 items-center mr-3'>
+            <ul className='flex gap-0 sm:gap-5 items-center mr-3'>
                 <Link to='/' onClick={() => window.scrollTo(0, 0)} title='Home'>
                 <li className='hidden sm:inline text-slate-700 hover:underline'>Home</li>
                 </Link>
