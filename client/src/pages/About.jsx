@@ -17,28 +17,29 @@ export default function About() {
 
       {/* About the Author */}
       <div className="about-container max-w-3xl mx-auto py-12 px-6 rounded-lg">
-        <h1 className="text-2xl sm:text-3xl font-bold text-slate-700 mb-6 tracking-wide">About The Author</h1>
+        <h1 className="text-xl sm:text-2xl font-bold text-slate-700 mb-6 tracking-wide">About The Author</h1>
         
-        <p className="text-lg sm:text-xl text-slate-600 mb-6 ">
-          Hi! I'm <span className="font-semibold text-blue-600 hover:underline cursor-pointer" onClick={()=>{document.getElementById("scroll-target").scrollIntoView({ behavior: 'smooth' })}}>Ruichao Tang</span>, a computer science student based in San Francisco. I’m passionate about technology and software development, aiming to pursue a career as a software engineer.
+        <p className="text-base sm:text-lg text-slate-600 mb-6 ">
+          Hi! I'm <span className="font-semibold text-blue-600 hover:underline cursor-pointer" onClick={()=>{document.getElementById("scroll-target").scrollIntoView({ behavior: 'smooth' })}}>
+            Ruichao Tang</span>, a computer science student based in San Francisco. I’m passionate about technology and software development, aiming to pursue a career as a software engineer.
         </p>
         
         {/* About the Project */}
-        <h1 className="text-2xl sm:text-3xl font-bold text-slate-700 mb-6 tracking-wide">About This Project</h1>
-        <p className="text-lg sm:text-xl text-slate-600 mb-6">
+        <h1 className="text-xl sm:text-2xl font-bold text-slate-700 mb-6 tracking-wide">About This Project</h1>
+        <p className="text-base sm:text-lg text-slate-600 mb-6">
           This project is part of my personal learning journey, developed using the MERN stack (MongoDB, Express, React, Node.js). While it serves as a practice project, it represents my ongoing dedication to mastering software engineering and my continuous effort to improve as a developer. Feel free to explore, and thank you for visiting!
         </p>
 
         {/* Tools & Frameworks */}
-        <h2 className="text-lg sm:text-xl font-semibold text-slate-600 mb-4 tracking-wide">Other Tools & Frameworks:</h2>
-        <p className="text-lg sm:text-xl text-slate-600">
+        <h2 className="text-base sm:text-lg font-semibold text-slate-600 mb-4 tracking-wide">Other Tools & Frameworks:</h2>
+        <p className="text-base sm:text-lg text-slate-600">
           Firebase (authentication, picture storage),<br/>Redux (state management),<br/>JWT (secure communication),<br/>Render (deployment),<br/>Tailwind CSS (styling).
         </p>
 
         {/* Credits */}
         <div className="my-12">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-700 mb-6 tracking-wide">Credits</h1>
-          <p className="text-lg sm:text-xl text-slate-600">
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-700 mb-6 tracking-wide">Credits</h1>
+          <p className="text-base sm:text-lg text-slate-600">
             Special thanks to <a href="https://www.youtube.com/@reactproject" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">@React & Next.js Projects with Sahand</a> for providing valuable learning resources. The tutorial {'\u00A0'}
             <a href="https://www.youtube.com/watch?v=VAaUy_Moivw&ab_channel=React%26NextjsProjectswithSahand" target="_blank" title="Watch on YouTube">
               <i className="fab fa-youtube text-red-500 hover:text-red-400"></i>

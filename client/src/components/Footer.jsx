@@ -9,7 +9,8 @@ export default function Tail() {
       {/* <!-- Left side: logo and description --> */}
       <div className="mb-4 sm:mb-0">
         <h1 className="flex text-base sm:text-2xl sm:font-bold">Created By{'\u00A0'}
-        <Link to={'/about'} onClick={() => window.scrollTo(0, 0)}>
+        <Link to={'/about'} onClick={() => {
+          document.getElementById("scroll-target").scrollIntoView({ behavior: 'smooth' })}}>
         <span className='text-blue-500 hover:text-blue-400 transition-colors duration-300' title='About'> RuichaoTang</span> 
         </Link>
         </h1>

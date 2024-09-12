@@ -63,6 +63,18 @@ export const getListing = async(req, res, next) => {
     }
 }
 
+export const getRandom = async (req, res, next) => {
+    try {
+      const listings = await Listing.aggregate([{ $sample: { size: 4 } }]);
+      if (!listings || listings.length === 0) {
+        return next(errorHandler(404, 'Listings not found!'));
+      }
+      res.status(200).json(listings);
+    } catch (error) {
+      next(error);
+    }
+  }
+
 export const searchListing = async(req, res, next) => {
     try {
         const limit = parseInt(req.query.limit) || 9

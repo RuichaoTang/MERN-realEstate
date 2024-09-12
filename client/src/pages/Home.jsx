@@ -17,8 +17,9 @@ export default function Home() {
   useEffect(()=>{
     const fetchOfferListings = async ()=>{
       try {
-        const res = await fetch('/api/listing/get?offer=true&limit=4')
+        const res = await fetch('/api/listing/random_offer')
         const data = await res.json()
+        console.log(data)
         setOfferListings(data)
       } catch (error) {
         console.log(error)
