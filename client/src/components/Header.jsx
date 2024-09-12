@@ -54,7 +54,7 @@ export default function Header() {
                 <li className='hidden sm:inline text-slate-700 hover:underline'>About</li>
                 </Link>
 
-                <div className='flex flex-wrap gap-5 justify-center items-center mx-auto'>
+                <div className='flex flex-wrap gap-3 sm:gap-5 justify-center items-center mx-auto'>
                 <Link to='/profile' title='Profile' onClick={() => window.scrollTo(0, 0)}>
                 
 
