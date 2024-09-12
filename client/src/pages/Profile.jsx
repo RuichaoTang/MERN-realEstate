@@ -40,6 +40,7 @@ const handleFileUpload = (file)=>{
   const fileName = new Date().getTime() + file.name
   const storageRef = ref(storage, fileName)
   const uploadTask = uploadBytesResumable(storageRef, file)
+
   uploadTask.on('state_changed',
     (snapshot) => {
       const progress = (snapshot.bytesTransferred / 
@@ -231,9 +232,9 @@ const handleListingDelete = async(listingId) =>{
 
         <div className="flex gap-10 flex-wrap justify-center mx-auto max-w-6xl p-3 mb-32">
         {userListings.map((listing)=>(
-          <div className="gap-4">
+          <div className="gap-4" key={listing._id}>
 
-          <div key={listing._id} className="rounded-lg flex flex-col gap-1">
+          <div className="rounded-lg flex flex-col gap-1">
           <Link to={`/listing/${listing._id}`}>
             <ListingCard listing={listing}/>
           </Link>
