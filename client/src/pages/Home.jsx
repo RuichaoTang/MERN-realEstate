@@ -54,17 +54,19 @@ export default function Home() {
   return (
     <div className='pt-12 sm:pt-16 min-h-screen'>
       {/* top */}
+      <div className="dynamic-background flex items-center justify-center sm:items-start sm:justify-start" >
+      {/* <h1 class="text-4xl font-bold text-white">Animated Background</h1> */}
         <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
-          <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>Effortless home{'\u00A0'}
+          <h1 className='text-slate-600 font-bold text-4xl lg:text-6xl'>Effortless home{'\u00A0'}
             <Link to={'/search'} title='Search' onClick={()=>window.scrollTo(0,0)}>
-            <span className='text-slate-400 hover:text-slate-500 transition-colors duration-300'>
+            <span className='text-green-700 hover:text-slate-500 transition-colors duration-300'>
           search</span>
             </Link>
           
           <br/>just for you
           </h1>
           <Link to={'/about'} title='About'>
-          <div className='text-gray-400 text-xs sm:text-sm hover:text-gray-500 transition-colors duration-300'>
+          <div className='text-gray-500 text-xs sm:text-sm hover:text-black transition-colors duration-300'>
           Your perfect home is just a click away at NestLand. <br/>
           Explore our wide range of property options to find the one that fits you best.
           </div>
@@ -73,6 +75,7 @@ export default function Home() {
             Let's get started...
           </Link>
         </div>
+    </div>
       {/* swiper */}
       <Swiper navigation
           autoplay={{
