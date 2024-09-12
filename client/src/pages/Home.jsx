@@ -52,7 +52,7 @@ export default function Home() {
 
 
   return (
-    <div className='pt-12 sm:pt-16 min-h-screen'>
+    <div className='pt-10 sm:pt-16 min-h-screen'>
       {/* top */}
       <div className="dynamic-background flex items-center justify-center sm:items-start sm:justify-start" >
       {/* <h1 class="text-4xl font-bold text-white">Animated Background</h1> */}

@@ -117,7 +117,7 @@ export default function Search() {
     },[location.search])
 
   return (
-    <div className='flex flex-col md:flex-row pt-12 sm:pt-16 min-h-screen bg-gradient-to-b sm:bg-gradient-to-r from-transparent via-transparent to-slate-200 w-full'>
+    <div className='flex flex-col md:flex-row pt-10 sm:pt-16 min-h-screen bg-gradient-to-b sm:bg-gradient-to-r from-transparent via-transparent to-slate-200 w-full'>
         {/* left part */}
         <div className='p-7 md:h-full sm:fixed bg-gradient-to-b from-slate-200 via-transparent to-transparent z-10'>
             <form className='flex flex-col gap-7' onSubmit={handleSubmit}>

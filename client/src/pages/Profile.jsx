@@ -174,7 +174,7 @@ const handleListingDelete = async(listingId) =>{
   return (
     <div className="min-h-screen bg-gradient-to-b from-transparent to-slate-200 w-full">
 
-    <div className="pt-12 sm:pt-16 max-w-6xl mx-auto">
+    <div className="pt-10 sm:pt-16 max-w-6xl mx-auto">
 
     <div className="p-3 max-w-lg mx-auto">
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>

@@ -2,7 +2,7 @@
  
  export default function About() {
    return (
-     <div className='pt-12 sm:pt-16 flex flex-col min-h-screen bg-gradient-to-b from-transparen via-transparent to-slate-200 w-full'>
+     <div className='pt-10 sm:pt-16 flex flex-col min-h-screen bg-gradient-to-b from-transparen via-transparent to-slate-200 w-full'>
       <div className="about-container max-w-3xl mx-auto py-12 px-6 bg-gradient-to-r from-transparent via-white to-transparent">
       <h1 className="text-2xl sm:text-3xl font-bold mb-4">About the Author</h1>
       

@@ -53,7 +53,7 @@ export default function ShowListings() {
     }
 
   return (
-    <main className='pt-12 sm:pt-16'>
+    <main className='pt-10 sm:pt-16'>
         {loading && <p className='text-center my-7 text-2x'>Loading...</p>}
         {error && <p className='text-center my-7 text-2x'>Something went wrong!</p>}
         {listing && !loading && !error && (
