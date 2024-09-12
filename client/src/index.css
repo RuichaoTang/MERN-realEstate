@@ -16,3 +16,6 @@ a i {
     background-color: #cbd5e130
   }
   
+  .transparent-element {
+    pointer-events: none; /* 透明元素不会拦截点击事件 */
+  }

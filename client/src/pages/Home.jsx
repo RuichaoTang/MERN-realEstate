@@ -58,20 +58,20 @@ export default function Home() {
       <img
         src="https://firebasestorage.googleapis.com/v0/b/mern-estate-c1d3f.appspot.com/o/1726135812598pixlr-image-generator-0a9aaa1e-0d0b-42ac-b407-dfb1e5f82b42.png?alt=media&token=ca194743-0d0c-4280-af4f-4110579ecba6" // Replace with your image path
         alt=""
-        className="w-full h-64 object-cover fixed opacity-5"
+        className="w-full h-64 object-cover fixed opacity-5 transparent-element"
         style={{
           maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 40%)',
           WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 40%)'
         }}
       />
       {/* top */}
-      <div className="dynamic-background flex items-center justify-center sm:items-start sm:justify-start" >
+      <div className="dynamic-background flex items-center justify-center sm:items-start sm:justify-start z-10" >
       {/* <h1 class="text-4xl font-bold text-white">Animated Background</h1> */}
         <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
           <h1 className='text-slate-600 font-bold text-4xl lg:text-6xl'>Effortless home{'\u00A0'}
             <Link to={'/search'} title='Search' onClick={()=>window.scrollTo(0,0)}>
-            <span className='text-green-700 hover:text-slate-500 transition-colors duration-300'>
-          search</span>
+              <span className='text-green-700 hover:text-slate-500 transition-colors duration-300'>
+                search</span>
             </Link>
           
           <br/>just for you
