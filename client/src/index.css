@@ -19,3 +19,14 @@ a i {
   .transparent-element {
     pointer-events: none; /* 透明元素不会拦截点击事件 */
   }
+
+  button, div, a {
+    touch-action: manipulation; /* 减少延迟 */
+    -webkit-tap-highlight-color: transparent; /* 去掉点击时的高亮 */
+    transition: transform 200ms;
+  }
+
+
+button:active{
+    transform: scale(1.05); /* Scale the button to 105% of its original size when active */
+}
