@@ -13,7 +13,7 @@ const FavoritesPage = () => {
   const navigate = useNavigate()
 
 
-  console.log(userId)
+//   console.log(userId)
   
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -21,7 +21,7 @@ const FavoritesPage = () => {
         const res = await fetch(`/api/user/${userId}/favorites`)
         const data = await res.json()
         setFavorites(data);
-        console.log(data)
+        // console.log(data)
       } catch (error) {
         setError(error.message);
       } finally {
@@ -48,7 +48,7 @@ const FavoritesPage = () => {
       </div>
     </div>
   <div className='flex flex-col items-center w-full'>
-    <h1 className='text-base sm:text-2xl font-semibold border-b text-slate-700 text-center tracking-wide mb-5'>
+    <h1 className='text-base sm:text-2xl font-semibold border-b text-slate-700 text-center tracking-wide mt-12 mb-5'>
       Saved Listings
     </h1>
 

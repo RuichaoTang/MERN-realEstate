@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {Swiper, SwiperSlide} from 'swiper/react' 
 import 'swiper/css/bundle'
 import SwiperCore from 'swiper'
 import {Navigation, Autoplay, Pagination} from 'swiper/modules'
 import ListingCard from '../components/ListingCard'
+import { FaBook } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([])
   const [saleListings, setSaleListings] = useState([])
   const [rentListings, setRentListings] = useState([])
+  const {currentUser} = useSelector((state) => state.user)
+
+  const navigate = useNavigate()
   SwiperCore.use([Navigation, Autoplay, Pagination])
 
-  console.log(offerListings)
+  // console.log(offerListings)
   useEffect(()=>{
     const fetchOfferListings = async ()=>{
       try {
         const res = await fetch('/api/listing/random_offer')
         const data = await res.json()
-        console.log(data)
+        // console.log(data)
         setOfferListings(data)
       } catch (error) {
         console.log(error)
@@ -50,6 +55,18 @@ export default function Home() {
     fetchSaleListings()
   },[])
 
+  const checkFav = () => {
+    if(currentUser){
+        navigate(`/user/${currentUser._id}/favorites`)
+    }else{
+        const yesOrNo = window.confirm('Log in to see your saved listing?')
+        if(yesOrNo===true){
+            navigate('/sign-in')
+        }else{
+            return
+        }
+    }
+  }
 
 
   return (
@@ -64,6 +81,18 @@ export default function Home() {
           WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 40%)'
         }}
       />
+      <div className="fixed bottom-20 right-7 sm:right-16 flex justify-center z-50">
+
+<button
+onClick={checkFav}
+className="flex flex-col items-center justify-center bg-gradient-to-b from-blue-500 to-blue-700 text-white p-4 rounded-lg shadow-lg hover:bg-gradient-to-b hover:from-blue-600 hover:to-blue-800 transition-all duration-300 w-16 h36"
+title="Saved Listings"
+>
+<FaBook className="w-10 h-10 mb-2" />
+
+</button>
+
+</div>
       {/* top */}
       <div className="dynamic-background flex items-center justify-center sm:items-start sm:justify-start z-10" >
       {/* <h1 class="text-4xl font-bold text-white">Animated Background</h1> */}
