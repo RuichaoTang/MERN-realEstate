@@ -109,28 +109,20 @@ const handleFavorite = async () => {
         }
 
     }else{
-        const yesOrNo = window.confirm('You haven\'t logged in. Log in to save this listing?')
-        if(yesOrNo===true){
             navigate('/sign-in')
-        }else{
-            return
-        }
+        
     }
 
   };
 
+  
   const checkFav = () => {
-        if(currentUser){
-            navigate(`/user/${currentUser._id}/favorites`)
-        }else{
-            const yesOrNo = window.confirm('You haven\'t logged in. Log in to see your saved listing?')
-            if(yesOrNo===true){
-                navigate('/sign-in')
-            }else{
-                return
-            }
-        }
-      }
+    if(currentUser){
+        navigate(`/user/${currentUser._id}/favorites`)
+    }else{
+        navigate('/sign-in')
+        
+    }}
 
   return (
     <main className={`pt-10 sm:pt-16 max-w-full transition-all duration-300`}>

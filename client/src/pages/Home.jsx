@@ -55,18 +55,14 @@ export default function Home() {
     fetchSaleListings()
   },[])
 
+  
   const checkFav = () => {
     if(currentUser){
         navigate(`/user/${currentUser._id}/favorites`)
     }else{
-        const yesOrNo = window.confirm('Log in to see your saved listing?')
-        if(yesOrNo===true){
-            navigate('/sign-in')
-        }else{
-            return
-        }
-    }
-  }
+        navigate('/sign-in')
+        
+    }}
 
 
   return (

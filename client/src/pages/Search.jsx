@@ -121,18 +121,14 @@ export default function Search() {
     },[location.search])
 
 
-    const checkFav = () => {
-        if(currentUser){
-            navigate(`/user/${currentUser._id}/favorites`)
-        }else{
-            const yesOrNo = window.confirm('Log in to see your saved listing?')
-            if(yesOrNo===true){
-                navigate('/sign-in')
-            }else{
-                return
-            }
-        }
-      }
+   
+  const checkFav = () => {
+    if(currentUser){
+        navigate(`/user/${currentUser._id}/favorites`)
+    }else{
+        navigate('/sign-in')
+        
+    }}
 
 
   return (
