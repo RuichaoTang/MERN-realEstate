@@ -21,8 +21,6 @@ a i {
   }
 
   button, div, a {
-    touch-action: manipulation; /* 减少延迟 */
-    -webkit-tap-highlight-color: transparent; /* 去掉点击时的高亮 */
     transition: transform 200ms;
   }
 
