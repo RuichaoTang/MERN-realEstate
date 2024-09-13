@@ -216,7 +216,7 @@ export default function Search() {
 
         {/* right part */}
         <div className='flex-1 sm:ml-96 '>
-            <h1 className='text-base sm:text-2xl font-semibold border-b text-slate-700 text-center tracking-wide mt-12 mb-5'>
+            <h1 className='text-lg sm:text-2xl font-semibold border-b text-slate-700 text-center tracking-wide mt-12 mb-5'>
     Listings Results
     </h1>
             <div className='sm:p-7 p-3 flex flex-wrap gap-4'>
