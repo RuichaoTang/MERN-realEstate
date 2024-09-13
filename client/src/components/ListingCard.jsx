@@ -13,7 +13,7 @@ export default function ListingCard({listing}) {
     }
 
   return (
-    <div className='bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[270px] transform active:scale-105 transition-transform duration-200'>
+    <div className='bg-white shadow-md hover:shadow-lg overflow-hidden rounded-lg w-full sm:w-[270px] transform active:scale-105 transition-transform duration-200'>
         <Link to={`/listing/${listing._id}`}>
             <img src={listing.imageUrls[0]} 
             alt='Picture Not Found' className='h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300'/>

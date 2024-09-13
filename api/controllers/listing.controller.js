@@ -75,6 +75,9 @@ export const getRandom = async (req, res, next) => {
     }
   }
 
+
+
+
   export const searchListing = async (req, res, next) => {
     try {
         const limit = parseInt(req.query.limit) || 9;

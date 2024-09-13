@@ -4,8 +4,9 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/
 import { app } from '../firebase'
 import { updateUserStart, updateUserFailure, updateUserSuccess, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStart, signOutUserSuccess, signOutUserFailure } from "../redux/user/userSlice"
 import { useDispatch } from "react-redux"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ListingCard from "../components/ListingCard"
+import { FaBook } from "react-icons/fa"
  
 export default function Profile() {
   const fileRef = useRef(null)
@@ -19,7 +20,8 @@ export default function Profile() {
   const [ showListingsError, setShowListingsError ] = useState(false)
   const [ userListings, setUserListings ] = useState([])
   const [ showListingButton, setShowListingButton] =useState(true)
-  console.log(userListings)
+  const navigate = useNavigate()
+  // console.log(userListings)
   // console.log(fileUploadError)
 
   
@@ -171,6 +173,10 @@ const handleListingDelete = async(listingId) =>{
     console.log(error.message)
   }
 }
+const checkFav = () => {
+      navigate(`/user/${currentUser._id}/favorites`)
+  }
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-transparent to-slate-200 w-full">
@@ -186,6 +192,19 @@ const handleListingDelete = async(listingId) =>{
       />
 
     <div className="pt-10 sm:pt-16 max-w-6xl mx-auto">
+
+    <div className="fixed bottom-20 right-7 sm:right-16 flex justify-center z-50">
+
+      <button
+  onClick={checkFav}
+  className="flex flex-col items-center justify-center bg-gradient-to-b from-blue-500 to-blue-700 text-white p-4 rounded-lg shadow-lg hover:bg-gradient-to-b hover:from-blue-600 hover:to-blue-800 transition-all duration-300 w-16 h36"
+  title="Saved Listings"
+>
+  <FaBook className="w-10 h-10 mb-2" />
+  
+</button>
+
+      </div>
 
     <div className="p-3 max-w-lg mx-auto">
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>

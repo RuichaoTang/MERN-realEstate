@@ -8,6 +8,10 @@ import { FaMapMarkedAlt, FaBed, FaBath, FaParking, FaChair } from 'react-icons/f
 import { useSelector } from 'react-redux'
 import Contact from '../components/Contact'
 import ListingUpdater from '../components/ListingUpdater'
+import { useNavigate } from 'react-router-dom';
+
+import GoBack from '../components/GoBack'
+import { FaStar, FaBook } from 'react-icons/fa'; // 使用 react-icons 图标库
 
 
 export default function ShowListings() {
@@ -19,8 +23,39 @@ export default function ShowListings() {
     const params = useParams()
     const {currentUser} = useSelector((state) => state.user)
     const [showUpdate, setShowUpdate] = useState(false)
+    const navigate = useNavigate()
+    
+    const [isFavorited, setIsFavorited] = useState(false)
+    const [favorites, setFavorites] = useState([]);
+    // console.log('param',params)
 
-    console.log(listing)
+    // console.log(favorites)
+
+    useEffect(() => {
+        if(!currentUser){
+            return
+        }
+        const userId = currentUser._id
+        const fetchFavorites = async () => {
+          try {
+            const res = await fetch(`/api/user/${userId}/favorites`)
+            const data = await res.json()
+            setFavorites(data);
+          } catch (error) {
+            setError(error.message);
+          } finally {
+            setLoading(false);
+          }
+        };
+        fetchFavorites();
+      },[]);
+
+    useEffect(()=>{
+        if(!currentUser){return}
+        // console.log(params.listingId)
+         setIsFavorited(favorites.some(listing=>{return listing._id === params.listingId}))
+        //  console.log(isFavorited)
+    },[favorites])
 
     useEffect(()=>{
         const urlParams = new URLSearchParams(location.search)
@@ -52,8 +87,95 @@ export default function ShowListings() {
         setShowUpdate(true)
     }
 
+const handleFavorite = async () => {
+    if(currentUser){
+        
+        try {
+          const response = await fetch('/api/user/favorite', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ listingId: params.listingId,
+                userRef: currentUser._id
+             }),
+          });
+      
+          const data = await response.json();
+          console.log(data)
+          setIsFavorited(!isFavorited) 
+        } catch (error) {
+          console.error('Error toggling favorite:', error);
+        }
+
+    }else{
+        const yesOrNo = window.confirm('You haven\'t logged in. Log in to save this listing?')
+        if(yesOrNo===true){
+            navigate('/sign-in')
+        }else{
+            return
+        }
+    }
+
+  };
+
+  const checkFav = () => {
+        if(currentUser){
+            navigate(`/user/${currentUser._id}/favorites`)
+        }else{
+            const yesOrNo = window.confirm('You haven\'t logged in. Log in to see your saved listing?')
+            if(yesOrNo===true){
+                navigate('/sign-in')
+            }else{
+                return
+            }
+        }
+      }
+
   return (
-    <main className='pt-10 sm:pt-16'>
+    <main className={`pt-10 sm:pt-16 max-w-full transition-all duration-300`}>
+        
+
+        <div className="fixed top-24 sm:top-32 left-0 w-full flex justify-center z-50">
+      <div className="max-w-6xl w-full flex justify-between items-center px-4">
+        {/* 返回按钮 */}
+        <GoBack/>
+
+        {/* 收藏按钮 */}
+        <button
+          onClick={handleFavorite}
+          className={` text-white p-3 rounded-lg shadow-lgactive:scale-95 transition-colors duration-200 ${isFavorited ? 'bg-gradient-to-b from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700' : 
+                        'bg-gradient-to-b from-gray-500 to-gray-700 hover:from-gray-600 hover:to-gray-800'}`}
+        title={isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
+        >
+          <FaStar className="w-6 h-6" />
+        </button>
+
+
+      </div>
+    </div>
+    <div className="fixed top-40 sm:top-48 left-0 w-full flex justify-center z-50">
+      <div className="max-w-6xl w-full flex justify-end items-center px-4">
+
+        <button
+          onClick={checkFav}
+          className="text-white p-3 rounded-lg shadow-lg bg-gradient-to-b from-blue-500 to-blue-700 hover:bg-gradient-to-b hover:from-blue-600 hover:to-blue-800 transition-all duration-300 active:scale-95"
+          title="Saved List"
+        >
+          <FaBook className="w-6 h-6" />
+        </button>
+
+
+      </div>
+    </div>
+
+
+        
+
+        
+
+
+
         {loading && <p className='text-center my-7 text-2x'>Loading...</p>}
         {error && <p className='text-center my-7 text-2x'>Something went wrong!</p>}
         {listing && !loading && !error && (
@@ -71,20 +193,42 @@ export default function ShowListings() {
        slidesPerView={1}
         >
                 {listing.imageUrls.map( url => (
-                    <SwiperSlide key={url} className='transition-opacity duration-300 hover:opacity-80'>
+                    <SwiperSlide
+                    key={url}
+                    className={`relative transition-opacity duration-300`}
+                  >
+                    {isFavorited && (
+                        
+                      <div
+                        className="absolute inset-0 bg-gradient-to-b from-yellow-600 to-transparent opacity-50 transparent-element"
+                        style={{ zIndex: 2 }}
+                        />
+                        
+                        
+                        
+                      
+                    )}
                     <Link to={url} target="_blank" rel="noopener noreferrer" title='See Full Image'>
-                    <div style={{
-                        maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)',
-                        WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)'
-                    }}>
-                    <img src={url} alt='Picture not found.' className="w-full h-[350px] sm:h-[550px] object-cover"/>
-                    </div>
+                      <div
+                        style={{
+                          maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)',
+                          WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 30%)',
+                          position: 'relative',
+                          zIndex: 1, // Ensure this is above the background
+                        }}
+                      >
+                        <img
+                          src={url}
+                          alt='Picture not found.'
+                          className="w-full h-[350px] sm:h-[550px] object-cover"
+                        />
+                      </div>
                     </Link>
-                </SwiperSlide>
+                  </SwiperSlide>
                 ))}
             </Swiper>
-            <div className='max-w-4xl my-7 mx-auto flex flex-col gap-y-6 p-3' >
-
+            <div className='max-w-4xl  mx-auto flex flex-col gap-y-6 p-3' >
+            
             <div className='flex flex-wrap gap-4'>
                 <h1 className='text-3xl font-bold uppercase text-slate-700'>{listing.name}</h1>
                 <h1 className='text-3xl font-bold uppercase text-slate-700'>-</h1>
@@ -117,6 +261,7 @@ export default function ShowListings() {
                     <p className='bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>Discount: ${+listing.regularPrice - +listing.discountedPrice}</p>
                 )
             }
+
             </div>
 
             </div>
@@ -161,7 +306,7 @@ export default function ShowListings() {
             }
             {currentUser && listing.userRef !== currentUser._id && !contact &&
             <button onClick={()=>setContact(true)}
-            className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 w-full mt-16 mb-16'>Contact Landlord</button>
+            className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 w-full mt-16 -16'>Contact Landlord</button>
         }
             {contact && <Contact listing={listing}/>}
             </div>
